@@ -130,7 +130,7 @@ app.post("/addresses", async(req, res)=>{
         res.status(500).json({message: "Error adding addresses"})
     }
 })
-app.post("/addresses/:userId", async (req, res)=>{
+app.get("/addresses/:userId", async (req, res)=>{
     try {
         const userId = req.params.userId;
         const user = await User.findById(userId);
