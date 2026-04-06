@@ -187,11 +187,8 @@ app.post("/orders", async(req, res)=>{
 app.get("/orders/:userId", async(req, res)=>{
     try {
         const userId = req.params.userId;
-        const orders = await Order.find({user: userId}).populate("user");
-        if(!orders || orders.length === 0){
-            return res.status(404).json({message: "no orders found from this user"});
-        }
-        res.status(200).json({orders});
+        const orders = await Order.find({user: userId});
+        res.status(200).json({orders: orders || []});
     } catch(error){
         res.status(500).json({message: "error"});
     }
